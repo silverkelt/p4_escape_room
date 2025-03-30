@@ -1,7 +1,7 @@
 <?php
 $server = "localhost"; //pas aan indien nodig
 $username = "root"; //pas aan indien nodig
-$password = ""; //pas aan indien nodig
+$password = "root"; //pas aan indien nodig
 $db = "escape-room-test"; //pas aan indien nodig
 
 try {
