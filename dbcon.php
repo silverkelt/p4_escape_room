@@ -1,8 +1,8 @@
 <?php
-$server = "localhost"; //pas aan indien nodig
-$username = "root"; //pas aan indien nodig
-$password = "root"; //pas aan indien nodig
-$db = "escape-room-test"; //pas aan indien nodig
+$server = "localhost"; 
+$username = "root";
+$password = ""; 
+$db = "escape-room"; 
 
 try {
   $db_connection = new PDO("mysql:host=$server; dbname=$db", $username, $password);
