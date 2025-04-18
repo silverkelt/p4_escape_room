@@ -1,9 +1,8 @@
 <?php
-require_once('dbcon.php');
+require_once('./admin/dbcon.php');
 
 try {
-  // Haal 4 willekeurige vragen op
-  $stmt = $db_connection->query("SELECT * FROM questions_room_one WHERE roomId = 1");
+  $stmt = $db_connection->query("SELECT * FROM questions WHERE roomId = 1");
   $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   die("Databasefout: " . $e->getMessage());
@@ -24,11 +23,11 @@ try {
 
   <div class="container">
     <?php foreach ($questions as $index => $question) : ?>
-      <div class="box" onclick="openModal(<?php echo $index; ?>)" data-index="<?php echo $index; ?>"
-        data-question="<?php echo htmlspecialchars($question['question']); ?>"
-        data-answer="<?php echo htmlspecialchars($question['answer']); ?>">
-        Box <?php echo $index + 1; ?>
-      </div>
+    <div class="box box<?php echo $index + 1; ?>" onclick="openModal(<?php echo $index; ?>)"
+      data-index="<?php echo $index; ?>" data-question="<?php echo htmlspecialchars($question['question']); ?>"
+      data-answer="<?php echo htmlspecialchars($question['answer']); ?>">
+      Box <?php echo $index + 1; ?>
+    </div>
     <?php endforeach; ?>
   </div>
 
@@ -41,8 +40,6 @@ try {
     <button onclick="checkAnswer()">Verzenden</button>
     <p id="feedback"></p>
   </section>
-
-
 
   <script src="app.js"></script>
 
