@@ -12,7 +12,7 @@ Let op, dit is alleen om een opzet te geven. Daarna gaan jullie verder bouwen.
 - **app.js**: Bevat de JavaScript-code voor de interactie met de vragen en antwoorden.
 - **style.css**: Bevat de styling van de pagina.
 - **dbcon.php**: Verbindt met de database en verzorgt de databaseverbinding.
-- **database.sql**: Bevat de database-structuur en voorbeeldvragen.
+- **questions.sql**: Bevat de database-structuur en voorbeeldvragen.
 - **overige**: In de overige bestanden dien je de opdracht te maken.
 
 ## Uitleg van de code
