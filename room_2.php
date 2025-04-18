@@ -1,5 +1,5 @@
 <?php
-require_once('./admin/dbcon.php');
+require_once('./dbcon.php');
 
 try {
   $stmt = $db_connection->query("SELECT * FROM questions WHERE roomId = 2");
@@ -15,7 +15,7 @@ try {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Escape Room 1</title>
+  <title>Escape Room 2</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
