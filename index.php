@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Escape Room</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Escape Room - Grieks</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-  <h1>Welkom</h1>
-  <!-- De button hieronder is alleen voor testdoeleinden bij het opstarten van het project.
-     Deze pagina is bedoeld voor de uitleg van jullie escape room. -->
+  <nav>
+    <div class="logo">
+      <img src="griek logo.jpg" alt="Escape Room Logo" />
+    </div>
+    <div class="nav-buttons">
+      <button><a href="index.html">Home</a></button>
+      <button><a href="uitleg.html">Uitleg</a></button>
+      <button><a href="room_1.php">Escape room</a></button>
+      <button><a href="contact.html">Contact</a></button>
+    </div>
+  </nav>
 
-  <button><a href="room_1.php">Klik hier voor een demonstratie van kamer 1</a></button>
+  <header>
+    <h1>Welkom bij de Griekse Escape Room</h1>
+    <p>Ontsnap uit een mysterieuze tempel vol puzzels en geheimen</p>
+  </header>
+
+  <footer>
+    <p>&copy; 2025 Griekse Escape Room | Ontworpen met passie voor puzzels 🏛️</p>
+  </footer>
 
 </body>
+
+
 
 </html>
