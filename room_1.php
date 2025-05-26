@@ -1,5 +1,5 @@
 <?php
-require_once('./dbcon.php');
+require_once('dbcon.php');
 
 try {
   $stmt = $db_connection->query("SELECT * FROM questions WHERE roomId = 1");

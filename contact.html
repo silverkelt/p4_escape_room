@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - Griekse Escape Room</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav>
+    <div class="nav-buttons">
+      <button><a href="index.html">Home</a></button>
+      <button><a href="uitleg.html">Uitleg</a></button>
+      <button><a href="room_1.php">Escape room</a></button>
+      <button><a href="contact.html">Contact</a></button>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Contact</h1>
+    <p>Heb je vragen over de escape room? Neem contact met ons op!</p>
+  </header>
+
+  <main>
+    <section class="contact-form">
+  <h2>Neem contact met ons op</h2>
+  <form action="verwerk_contact.php" method="POST">
+    <label for="naam">Naam:</label>
+    <input type="text" id="naam" name="naam" required>
+
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="bericht">Bericht:</label>
+    <textarea id="bericht" name="bericht" rows="5" required></textarea>
+
+    <button type="submit">Verstuur</button>
+  </form>
+</section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Griekse Escape Room | Ontworpen met passie voor puzzels 🏛️</p>
+  </footer>
+
+</body>
+</html>
