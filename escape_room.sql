@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 26 mei 2025 om 21:13
--- Serverversie: 10.4.32-MariaDB
--- PHP-versie: 8.2.12
+-- Generation Time: Jun 02, 2025 at 08:19 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `contact_formulier`
+-- Table structure for table `contact_formulier`
 --
 
 CREATE TABLE `contact_formulier` (
@@ -38,7 +38,7 @@ CREATE TABLE `contact_formulier` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `questions`
+-- Table structure for table `questions`
 --
 
 CREATE TABLE `questions` (
@@ -50,7 +50,7 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `questions`
+-- Dumping data for table `questions`
 --
 
 INSERT INTO `questions` (`id`, `question`, `answer`, `hint`, `roomId`) VALUES
@@ -68,7 +68,7 @@ INSERT INTO `questions` (`id`, `question`, `answer`, `hint`, `roomId`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `resultaten`
+-- Table structure for table `resultaten`
 --
 
 CREATE TABLE `resultaten` (
@@ -78,49 +78,83 @@ CREATE TABLE `resultaten` (
   `resultaat` enum('gewonnen','verloren') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Indexen voor geëxporteerde tabellen
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `username`, `password`) VALUES
+(1, 'test@test.nl', 'test', '$2y$10$sO6ocVqf7W2LXtHs/53er.FvIpTkJkmfCZIcBkaUIM.2GLIV2kMvu');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indexen voor tabel `contact_formulier`
+-- Indexes for table `contact_formulier`
 --
 ALTER TABLE `contact_formulier`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexen voor tabel `questions`
+-- Indexes for table `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexen voor tabel `resultaten`
+-- Indexes for table `resultaten`
 --
 ALTER TABLE `resultaten`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT voor geëxporteerde tabellen
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT voor een tabel `contact_formulier`
+-- AUTO_INCREMENT for table `contact_formulier`
 --
 ALTER TABLE `contact_formulier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `questions`
+-- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT voor een tabel `resultaten`
+-- AUTO_INCREMENT for table `resultaten`
 --
 ALTER TABLE `resultaten`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
