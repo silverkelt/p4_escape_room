@@ -47,8 +47,8 @@ try {
     <p id="feedback"></p>
   </section>
 </article>
-  <script src="test.js"></script>
-  <script src="timer.js"></script>
+  <script src="app.js"></script>
+
 </body>
 
 </html>
