@@ -20,13 +20,12 @@ try {
 </head>
 
 <body>
-
+<article id="body2">
   <div class="container">
     <?php foreach ($questions as $index => $question) : ?>
-    <div class="box box<?php echo $index + 1; ?>" onclick="openModal(<?php echo $index; ?>)"
+    <div class="box box2<?php echo $index + 1; ?>" onclick="openModal(<?php echo $index; ?>)"
       data-index="<?php echo $index; ?>" data-question="<?php echo htmlspecialchars($question['question']); ?>"
       data-answer="<?php echo htmlspecialchars($question['answer']); ?>">
-      Box <?php echo $index + 1; ?>
     </div>
     <?php endforeach; ?>
   </div>
@@ -40,7 +39,7 @@ try {
     <button onclick="checkAnswer()">Verzenden</button>
     <p id="feedback"></p>
   </section>
-
+</article>
   <script src="app.js"></script>
 
 </body>

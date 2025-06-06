@@ -32,7 +32,7 @@ a {
 .box {
   width: 100px;
   height: 100px;
-  background-color: #3498db;
+/*  background-color: #3498db;*/
   color: white;
   display: flex;
   align-items: center;
@@ -42,9 +42,7 @@ a {
   border-radius: 8px;
 }
 
-.box:hover {
-  background-color: #2980b9;
-}
+
 
 .overlay {
   position: fixed;
@@ -317,4 +315,34 @@ footer p {
 
 .contact-form button:hover {
   background-color: #c0a060;
+}
+
+#body1{
+  background-image: url('fotos/room/grasland.jpg');
+  background-size: cover; 
+  width: 100vw;
+  height: 100vh;
+}
+#body2{
+  background-image: url('fotos/room/temple.jpg');
+  background-size: cover; 
+  width: 100vw;
+  height: 100vh;
+}
+
+.box21{
+  position: absolute;
+  top: 75%;
+  left: 52%;
+  width: 200px;
+  height: 230px;
+  clip-path: ellipse(47% 50% at 50% 50%);
+    background-color: #c0a060;
+  opacity: 0.05;  
+}
+.box:hover {
+  background-color: #c0a060;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;  
+  box-shadow: 0 0 10px rgba(192, 160, 96, 0.5);
 }
