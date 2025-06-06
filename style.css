@@ -346,3 +346,19 @@ footer p {
   transition: opacity 0.3s ease;  
   box-shadow: 0 0 10px rgba(192, 160, 96, 0.5);
 }
+
+.timer {
+  font-family: 'GFS Didot', serif;
+  font-size: 60px;          /* Groter lettertype */
+  font-weight: bold;
+  color: #0B3D91;
+  text-align: center;
+  margin: 30px auto;
+  width: 300px;             /* Breder */
+  border: 4px solid #0B3D91;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #F0EDEE, #D4C6A6);
+  box-shadow: 0 0 15px rgba(11, 61, 145, 0.8);
+  user-select: none;
+}
+
