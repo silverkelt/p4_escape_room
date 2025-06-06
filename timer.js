@@ -1,6 +1,5 @@
-
-// Starttijd in seconden (10 minuten = 600 seconden)
-let timeLeft = 600;
+// Starttijd in seconden (5 minuten = 300 seconden)
+let timeLeft = 300;
 
 const timerElement = document.querySelector('.timer');
 
@@ -15,6 +14,8 @@ function updateTimer() {
   } else {
     clearInterval(timerInterval);
     timerElement.textContent = "Tijd is om!";
+    // Redirect naar lose.html
+    window.location.href = "lose.html";
   }
 }
 

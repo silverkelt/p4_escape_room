@@ -20,7 +20,11 @@ try {
 </head>
 
 <body>
+
+
+
 <article id="body2">
+  <div class="timer" style="font-size: 24px; font-weight: bold; margin-bottom: 20px;"></div>
   <div class="container">
     <?php foreach ($questions as $index => $question) : ?>
     <div class="box box2<?php echo $index + 1; ?>" onclick="openModal(<?php echo $index; ?>)"
@@ -29,6 +33,9 @@ try {
     </div>
     <?php endforeach; ?>
   </div>
+
+   
+  
 
   <section class="overlay" id="overlay" onclick="closeModal()"></section>
 
@@ -41,7 +48,7 @@ try {
   </section>
 </article>
   <script src="app.js"></script>
-
+  <script src="timer.js"></script>
 </body>
 
 </html>
