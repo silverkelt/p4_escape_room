@@ -19,8 +19,13 @@ try {
   <link rel="stylesheet" href="style.css">
 </head>
 
+
+
 <body>
   <article id="body1">
+
+   <div class="timer" style="font-size: 24px; font-weight: bold; margin-bottom: 20px;"></div>
+
 
   <div class="container">
     <?php foreach ($questions as $index => $question) : ?>
@@ -32,6 +37,9 @@ try {
     <?php endforeach; ?>
   </div>
 
+  
+
+
   <section class="overlay" id="overlay" onclick="closeModal()"></section>
 
   <section class="modal" id="modal">
@@ -42,8 +50,8 @@ try {
     <p id="feedback"></p>
   </section>
   </article>
-  <script src="app.js"></script>
-
+  <script src="test.js"></script>
+  <script src="timer.js"></script>
 </body>
 
 </html>
