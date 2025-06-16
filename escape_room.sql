@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2025 at 08:19 PM
+-- Generation Time: Jun 16, 2025 at 12:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -72,10 +72,34 @@ INSERT INTO `questions` (`id`, `question`, `answer`, `hint`, `roomId`) VALUES
 --
 
 CREATE TABLE `resultaten` (
-  `id` int(11) NOT NULL,
+  `resultaat_id` int(11) NOT NULL,
   `naam` varchar(100) NOT NULL,
   `tijd` time NOT NULL,
   `resultaat` enum('gewonnen','verloren') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teams`
+--
+
+CREATE TABLE `teams` (
+  `team_id` int(11) NOT NULL,
+  `team_naam` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team_rule`
+--
+
+CREATE TABLE `team_rule` (
+  `team_rule_id` int(11) NOT NULL,
+  `team_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `resultaat_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -85,18 +109,19 @@ CREATE TABLE `resultaten` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `username` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `admin?` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `username`, `password`) VALUES
-(1, 'test@test.nl', 'test', '$2y$10$sO6ocVqf7W2LXtHs/53er.FvIpTkJkmfCZIcBkaUIM.2GLIV2kMvu');
+INSERT INTO `users` (`user_id`, `email`, `username`, `password`, `admin?`) VALUES
+(2, 'test2@klk.nl', 'test', '$2y$10$U2ThseCOnqqZy7cotOnj8.ad529da/zZQxroQIBY1JZcbd/NUyMMW', 0);
 
 --
 -- Indexes for dumped tables
@@ -118,13 +143,29 @@ ALTER TABLE `questions`
 -- Indexes for table `resultaten`
 --
 ALTER TABLE `resultaten`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`resultaat_id`),
+  ADD KEY `resultaat` (`resultaat`);
+
+--
+-- Indexes for table `teams`
+--
+ALTER TABLE `teams`
+  ADD PRIMARY KEY (`team_id`);
+
+--
+-- Indexes for table `team_rule`
+--
+ALTER TABLE `team_rule`
+  ADD PRIMARY KEY (`team_rule_id`),
+  ADD KEY `team_id` (`team_id`,`user_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `resultaat_id` (`resultaat_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `username` (`username`);
 
@@ -148,13 +189,31 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `resultaten`
 --
 ALTER TABLE `resultaten`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `resultaat_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `teams`
+--
+ALTER TABLE `teams`
+  MODIFY `team_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `team_rule`
+--
+ALTER TABLE `team_rule`
+  ADD CONSTRAINT `team_rule_ibfk_1` FOREIGN KEY (`team_id`) REFERENCES `teams` (`team_id`),
+  ADD CONSTRAINT `team_rule_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `team_rule_ibfk_3` FOREIGN KEY (`resultaat_id`) REFERENCES `resultaten` (`resultaat_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
