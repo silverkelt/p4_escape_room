@@ -4,135 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Login - Grieks Blauw & Goud</title>
-<style>
-  /* Basis body styling met een Grieks blauw achtergrond */
-  body {
-    margin: 0;
-    font-family: 'Georgia', serif;
-    background: linear-gradient(135deg, #0d47a1, #1976d2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #f5f1e9;
-  }
-
-  /* Container van het loginformulier */
-  .login-container {
-    background: rgba(255, 255, 255, 0.1);
-    border: 3px solid #d4af37;
-    border-radius: 15px;
-    padding: 40px 60px;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
-    width: 320px;
-    text-align: center;
-  }
-
-  /* Gouden titel */
-  h1 {
-    font-size: 2.5rem;
-    color: #d4af37;
-    margin-bottom: 30px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-    text-shadow: 1px 1px 3px #7a5a12;
-  }
-
-  /* Input velden */
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 12px 15px;
-    margin: 10px 0 25px 0;
-    border: none;
-    border-bottom: 2px solid #d4af37;
-    background: transparent;
-    color: #f5f1e9;
-    font-size: 1.1rem;
-    outline: none;
-    transition: border-color 0.3s ease;
-  }
-
-  input[type="text"]:focus,
-  input[type="password"]:focus {
-    border-color: #ffde7d;
-  }
-
-  /* Button */
-  button {
-    background: #d4af37;
-    border: none;
-    padding: 12px 0;
-    width: 100%;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #0d47a1;
-    cursor: pointer;
-    border-radius: 8px;
-    box-shadow: 0 5px 0 #a47f18;
-    transition: background 0.3s ease;
-  }
-
-  button:hover {
-    background: #ffde7d;
-  }
-
-  /* Kleine subtitel onder de button */
-  .subtext {
-    margin-top: 15px;
-    font-size: 0.9rem;
-    color: #d4af37;
-    text-shadow: 1px 1px 2px #7a5a12;
-  }
-
-  /* Linkjes */
-  .links {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  
-  .register-link {
-    color: #f5f1e9;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
-    padding-right: 85px;
-  }
-
- .home-link {
-  color: #f5f1e9;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
-  padding-left: 85px;
-}
-
-
-  .home-link:hover,
-  .register-link:hover {
-    color: #ffde7d;
-  }
-</style>
+<link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="login">
 
 <div class="login-container">
   <h1>Είσοδος</h1> <!-- Grieks voor "Login" -->
   <form>
     <input type="text" placeholder="Gebruikersnaam" required />
     <input type="password" placeholder="Wachtwoord" required />
-    <button type="submit">Inloggen</button>
+    <button type="submit" class="grieks login-button">Inloggen</button>
   </form>
   <div class="subtext">Welkom bij de Griekse stijl login</div>
   <div class="links">
-    <a href="index.html" class="home-link"> Home</a>
-    <a href="register.html" class="register-link">Registreren </a>
+    <a href="index.html" class="home-link">Home</a>
+    <a href="register.html" class="register-link">Registreren</a>
   </div>
 </div>
 
