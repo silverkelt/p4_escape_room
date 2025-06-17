@@ -5,8 +5,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=escape_room', 'root', '');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $gebruikersnaam = $_POST['gebruikersnaam'] ?? '';
-    $wachtwoord = $_POST['wachtwoord'] ?? '';
+    $gebruikersnaam = $_POST['username'] ?? '';
+    $wachtwoord = $_POST['password'] ?? '';
 
     $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->execute([$gebruikersnaam]);
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['is_admin'] = $user['admin']; // Let op: veld heet 'admin' in je database
 
         if ($user['admin'] == 1) {
-            header("Location: admin-dashboard.php");
+            header("Location: admin.html");
         } else {
             header("Location: user-dashboard.php");
         }

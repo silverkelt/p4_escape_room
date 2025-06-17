@@ -199,31 +199,21 @@ function Verwijderen_questions($conn, $nr)
 }
 
 function insertusers($post){
-    // Maak database connectie
     $conn = connectDb();
-
-    // Maak een query 
     $sql = "
-        INSERT INTO users (email, username, password,admin,user_id)
-        VALUES (:email, :username, :password, :admin, :user_id) 
+        INSERT INTO users (email, username, password, admin)
+        VALUES (:email, :username, :password, :admin)
     ";
-
-    // Prepare query
+    $hashed_password = password_hash($post['password'], PASSWORD_DEFAULT);
     $stmt = $conn->prepare($sql);
-    // Uitvoeren
     $stmt->execute([
-        ':email'=>$_POST['email'],
-        ':username'=>$_POST['username'],
-        ':password'=>$_POST['password'],
-        ':admin'=>$_POST['admin']
+        ':email' => $post['email'],
+        ':username' => $post['username'],
+        ':password' => $hashed_password,
+        ':admin' => $post['admin']
     ]);
-
-    
-    // test of database actie is gelukt
-    $retVal = ($stmt->rowCount() == 1) ? true : false ;
-    return $retVal;  
+    return ($stmt->rowCount() == 1) ? true : false;
 }
-
 function update_users($row){
     // Maak database connectie
     $conn = connectDb();
