@@ -11,7 +11,7 @@ if(isset($_POST) && isset($_POST['insert_button'])){
 
 <h1>add questions</h1>
     <nav>
-        <a href='crud.php'>return</a>
+        <a href='show_all_questions.php'>return</a>
         </nav>
         <form method='post'>
             <label for='question'>question: </label>
