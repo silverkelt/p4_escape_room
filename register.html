@@ -10,13 +10,13 @@
 
   <div class="register-container">
     <h1 class="register-title">Εγγραφή</h1>
-    <form>
-      <input type="text" class="register-input" placeholder="Gebruikersnaam" required />
-      <input type="email" class="register-input" placeholder="E-mailadres" required />
-      <input type="password" class="register-input" placeholder="Wachtwoord" required />
-      <input type="password" class="register-input" placeholder="Bevestig wachtwoord" required />
-      <button type="submit" class="register-button">Registreren</button>
-    </form>
+    <form method="POST" action="register.php">
+  <input type="text" name="gebruikersnaam" class="register-input" placeholder="Gebruikersnaam" required />
+  <input type="email" name="email" class="register-input" placeholder="E-mailadres" required />
+  <input type="password" name="wachtwoord" class="register-input" placeholder="Wachtwoord" required />
+  <input type="password" name="wachtwoord_confirm" class="register-input" placeholder="Bevestig wachtwoord" required />
+  <button type="submit" class="register-button">Registreren</button>
+</form>
     <div class="register-subtext">Word lid van onze Griekse community</div>
     <div class="register-links">
       <a href="index.html" class="home-link"> Home</a>

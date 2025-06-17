@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Login - Grieks Blauw & Goud</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Grieks Blauw & Goud</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="login">
 
 <div class="login-container">
-  <h1>Είσοδος</h1> <!-- Grieks voor "Login" -->
-  <form>
-    <input type="text" placeholder="Gebruikersnaam" required />
-    <input type="password" placeholder="Wachtwoord" required />
+  <h1>Είσοδος</h1>
+  <form action="login.php" method="POST">
+    <input type="text" name="gebruikersnaam" placeholder="Gebruikersnaam of e-mail" required />
+    <input type="password" name="wachtwoord" placeholder="Wachtwoord" required />
     <button type="submit" class="grieks login-button">Inloggen</button>
   </form>
   <div class="subtext">Welkom bij de Griekse stijl login</div>
