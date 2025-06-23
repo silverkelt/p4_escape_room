@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -8,12 +9,40 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <section class="screen win">
     <h1>Gefeliciteerd!</h1>
     <p>Je hebt de tempel weten te ontsnappen en de goden verslagen!</p>
+    <p id="totalTime">Je totale speeltijd is: ...</p>
+    <p id="finalScore">Je eindscore is: ...</p>
     <button onclick="location.href='index.html'">Speel opnieuw</button>
   </section>
+
+  <script>
+    // Haal tijden uit localStorage
+    const timeUsedRoom1 = Number(localStorage.getItem('timeUsedRoom1')) || 0;
+    const timeUsedRoom2 = Number(localStorage.getItem('timeUsedRoom2')) || 0;
+    const totalTimeSeconds = timeUsedRoom1 + timeUsedRoom2;
+
+    // Formatteer tijd naar mm:ss
+    const minutes = Math.floor(totalTimeSeconds / 60);
+    const seconds = totalTimeSeconds % 60;
+    const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+    // Haal score op
+    const score = Number(localStorage.getItem('score')) || 0;
+
+    // Toon tijd en score
+    document.getElementById('totalTime').textContent = `Je totale speeltijd is: ${formattedTime}`;
+    document.getElementById('finalScore').textContent = `Je eindscore is: ${score}`;
+
+    // Optioneel: reset tijd en score na winst
+    localStorage.removeItem('timeUsedRoom1');
+    localStorage.removeItem('timeUsedRoom2');
+    localStorage.removeItem('score');
+    localStorage.removeItem('huidigkamer');
+  </script>
+</body>
+</html>
 
 </body>
 </html>

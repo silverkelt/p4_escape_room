@@ -4,7 +4,7 @@ let correctAnswersCount = 0;
 let answeredQuestions = new Set();
 
 let huidigkamer = Number(localStorage.getItem('huidigkamer')) || 1;
-
+let score = Number(localStorage.getItem('score')) || 0;
 
 function openModal(index) {
   let box = document.querySelector(`.box[data-index='${index}']`);
@@ -37,9 +37,11 @@ function checkAnswer() {
     if (!answeredQuestions.has(index)) {
       correctAnswersCount++;
       answeredQuestions.add(index);
+      score += 100;  // 100 punten per goed antwoord
+      localStorage.setItem('score', score); // Score opslaan
     }
 
-    feedback.innerText = 'Goed gedaan!'+ correctAnswersCount;
+    feedback.innerText = 'Goed gedaan! Je score is nu: ' + score;
     feedback.style.color = 'green';
 
     setTimeout(() => {
@@ -48,16 +50,16 @@ function checkAnswer() {
       if (huidigkamer === 1) {
         if (correctAnswersCount >= 5) {
           huidigkamer = 2;
-          localStorage.setItem('huidigkamer' , huidigkamer);
-          correctAnswersCount = 0;       // reset teller voor kamer 2
-          answeredQuestions.clear();     // reset beantwoorde vragen (optioneel, als vragen ook per kamer veranderen)
-          window.location.href = 'room_2.php'; // pas dit aan naar jouw room 2 pagina
+          localStorage.setItem('huidigkamer', huidigkamer);
+          correctAnswersCount = 0;
+          answeredQuestions.clear();
+          window.location.href = 'room_2.php';
         }
       } else if (huidigkamer === 2) {
         if (correctAnswersCount >= 5) {
           huidigkamer = 1;
-          localStorage.setItem('huidigkamer' , huidigkamer);
-          window.location.href = 'win.html';  // sluit af met aanhalingstekens
+          localStorage.setItem('huidigkamer', huidigkamer);
+          window.location.href = 'win.html';
         }
       }
     }, 1000);
