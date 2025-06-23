@@ -11,12 +11,12 @@
 
  <nav>
   <div class="nav-buttons">
-    <button><a href="admin.html">Home</a></button>
+    <button><a href="user-dashboard.php">Home</a></button>
     <button><a href="user\add_team.php">team aanmaken</a></button>
     <button><a href="user\join_team.php">join team</a></button>
     <button><a href="room_1.php">Escape room</a></button>
     <button><a href="user\score.php">teams & scores</a></button>
-    <button><a href="user\logout.php">Uitloggen</a></button>
+    <button><a href="logout.php">Uitloggen</a></button>
   </div>
 </nav>
 
@@ -25,7 +25,7 @@
   <header>
     <h1>Welkom bij de Griekse Escape Room</h1>
 <p>
-  welkom admin 
+  welkom player 
 </a>
 
 </p>
