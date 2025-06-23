@@ -12,8 +12,22 @@
   <section class="screen lose">
     <h1>Helaas...</h1>
     <p>Je bent gevangen in de tempel. Probeer het opnieuw!</p>
+    <p id="finalScore">Je behaalde score is: ...</p>
     <button onclick="location.href='index.html'">Opnieuw proberen</button>
   </section>
+
+  <script>
+    // Haal score op uit localStorage, standaard 0 als niet gevonden
+    const score = Number(localStorage.getItem('score')) || 0;
+    // Toon score in de pagina
+    document.getElementById('finalScore').textContent = `Je behaalde score is: ${score}`;
+
+    // Optioneel: reset localStorage hier als je wilt dat alles opnieuw begint bij herstart
+    localStorage.removeItem('score');
+    localStorage.removeItem('timeUsedRoom1');
+    localStorage.removeItem('timeUsedRoom2');
+    localStorage.removeItem('huidigkamer');
+  </script>
 
 </body>
 </html>

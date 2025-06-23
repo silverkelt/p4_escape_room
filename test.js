@@ -59,7 +59,7 @@ function checkAnswer() {
         if (correctAnswersCount >= 5) {
           huidigkamer = 1;
           localStorage.setItem('huidigkamer', huidigkamer);
-          window.location.href = 'win.html';
+          window.location.href = 'win.php';
         }
       }
     }, 1000);
