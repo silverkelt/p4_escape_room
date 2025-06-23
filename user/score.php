@@ -28,13 +28,14 @@ $teams = $stmt->fetchAll();
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Jouw Teams & Scores</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body class="greek-scorepage">
     <h1>Jouw Teams & Scores</h1>
     <?php if (count($teams) > 0): ?>
-        <table border="1">
+        <table>
             <tr>
                 <th>Teamnaam</th>
                 <th>Teamcode</th>
