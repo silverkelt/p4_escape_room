@@ -1,51 +1,41 @@
 <?php
 session_start();
-include 'funtions.php'; // jouw DB-verbinding
+include 'funtions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tijd = $_POST['tijd'] ?? null;
     $score = $_POST['score'] ?? null;
     $resultaat = $_POST['resultaat'] ?? 'gewonnen';
 
-    // Stap 1: Validatie
-    if (!$tijd || !$score) {
+    // Validate input
+    if (!$tijd || $score === null) {
         die("Tijd of score ontbreekt");
     }
 
-    // Stap 2: Haal user_id op uit sessie
+    // Get user_id from session
     $userId = $_SESSION['user_id'] ?? null;
     if (!$userId) {
         die("Geen gebruiker ingelogd");
     }
 
-    // Stap 3: Haal resultaat_id op dat bij deze gebruiker hoort
-    $sql = "SELECT resultaat_id FROM team_rule WHERE user_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $userId);
-    $stmt->execute();
-    $stmt->bind_result($resultaatId);
-    $stmt->fetch();
-    $stmt->close();
+    // Get resultaat_id for this user (assumes user is in one team)
+    $conn = ConnectDb();
+    $stmt = $conn->prepare("SELECT resultaat_id FROM team_rule WHERE user_id = ? LIMIT 1");
+    $stmt->execute([$userId]);
+    $resultaatId = $stmt->fetchColumn();
 
     if (!$resultaatId) {
         die("Geen resultaat gevonden voor deze gebruiker");
     }
 
-    // Stap 4: Update het resultaat
-    $sql = "UPDATE resultaten SET tijd = ?, resultaat = ?, score = ? WHERE resultaat_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssii", $tijd, $resultaat, $score, $resultaatId);
-
-    if ($stmt->execute()) {
-        // Optioneel: redirect naar index
+    // Update the resultaat entry
+    $stmt = $conn->prepare("UPDATE resultaten SET tijd = ?, resultaat = ?, score = ? WHERE resultaat_id = ?");
+    if ($stmt->execute([$tijd, $resultaat, $score, $resultaatId])) {
         header("Location: index.html");
         exit;
     } else {
-        echo "Fout bij bijwerken: " . $stmt->error;
+        echo "Fout bij bijwerken: " . implode(", ", $stmt->errorInfo());
     }
-
-    $stmt->close();
-    $conn->close();
 }
 ?>
 <!DOCTYPE html>
