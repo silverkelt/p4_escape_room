@@ -33,7 +33,7 @@ function updateTimer() {
   } else {
     clearInterval(timerInterval);
     timerElement.textContent = "Tijd is om!";
-    window.location.href = "lose.html";
+    window.location.href = "lose.php"; // Redirect naar verliespagina
   }
 }
 

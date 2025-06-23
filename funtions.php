@@ -350,12 +350,12 @@ function register_team($post){
 
         // Insert a new result for this team
         $resultaat_query = $conn->prepare("
-            INSERT INTO resultaten (naam, tijd, resultaat)
-            VALUES (:naam, :tijd, :resultaat)
+            INSERT INTO resultaten (score, tijd, resultaat)
+            VALUES (:score, :tijd, :resultaat)
         ");
         // You can adjust these default values as needed
         $resultaat_query->execute([
-            'naam' => $post['team_naam'],
+            'score' => 0, // Default score
             'tijd' => '00:00:00',
             'resultaat' => 'not started'
         ]);

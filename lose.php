@@ -43,21 +43,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Je hebt gewonnen!</title>
+  <title>Je hebt verloren!</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <section class="screen win">
-    <h1>Gefeliciteerd!</h1>
-    <p>Je hebt de tempel weten te ontsnappen en de goden verslagen!</p>
-    <p id="totalTime">Je totale speeltijd is: ...</p>
-    <p id="finalScore">Je eindscore is: ...</p>
+
+  <section class="screen lose">
+    <h1>Helaas...</h1>
+    <p>Je bent gevangen in de tempel. Probeer het opnieuw!</p>
+    <p id="finalScore">Je behaalde score is: ...</p>
+        <p id="totalTime"></p>
+    <button onclick="location.href='index.html'">Opnieuw proberen</button>
+  </section>
+
 
     <form method="POST">
       <input type="hidden" name="tijd" id="tijdInput">
       <input type="hidden" name="score" id="scoreInput">
-      <input type="hidden" name="resultaat" value="gewonnen">
+      <input type="hidden" name="resultaat" value="verloren">
       <button type="submit">Submit score</button>
     </form>
   </section>
@@ -85,11 +89,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     document.getElementById('tijdInput').value = formattedTime;
     document.getElementById('scoreInput').value = totalscore;
 
-    // Leeg localStorage
+    // Optioneel: reset localStorage hier als je wilt dat alles opnieuw begint bij herstart
+    localStorage.removeItem('score');
     localStorage.removeItem('timeUsedRoom1');
     localStorage.removeItem('timeUsedRoom2');
-    localStorage.removeItem('score');
     localStorage.removeItem('huidigkamer');
-  </script>
+    </script>
 </body>
 </html>
+

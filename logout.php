@@ -1,5 +1,7 @@
 <?php
-session_unset();
-session_destroy();
+session_start();
+session_unset();      // Unset all session variables
+session_destroy();    // Destroy the session
 header("Location: index.html");
+exit;
 ?>
