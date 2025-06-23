@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2025 at 12:34 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Gegenereerd op: 23 jun 2025 om 15:35
+-- Serverversie: 10.4.32-MariaDB
+-- PHP-versie: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contact_formulier`
+-- Tabelstructuur voor tabel `contact_formulier`
 --
 
 CREATE TABLE `contact_formulier` (
@@ -38,7 +38,7 @@ CREATE TABLE `contact_formulier` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `questions`
+-- Tabelstructuur voor tabel `questions`
 --
 
 CREATE TABLE `questions` (
@@ -50,7 +50,7 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `questions`
+-- Gegevens worden geëxporteerd voor tabel `questions`
 --
 
 INSERT INTO `questions` (`id`, `question`, `answer`, `hint`, `roomId`) VALUES
@@ -68,31 +68,47 @@ INSERT INTO `questions` (`id`, `question`, `answer`, `hint`, `roomId`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resultaten`
+-- Tabelstructuur voor tabel `resultaten`
 --
 
 CREATE TABLE `resultaten` (
   `resultaat_id` int(11) NOT NULL,
-  `naam` varchar(100) NOT NULL,
   `tijd` time NOT NULL,
-  `resultaat` enum('gewonnen','verloren') NOT NULL
+  `resultaat` enum('gewonnen','verloren') NOT NULL,
+  `score` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `resultaten`
+--
+
+INSERT INTO `resultaten` (`resultaat_id`, `tijd`, `resultaat`, `score`) VALUES
+(6, '00:00:00', '', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teams`
+-- Tabelstructuur voor tabel `teams`
 --
 
 CREATE TABLE `teams` (
   `team_id` int(11) NOT NULL,
-  `team_naam` varchar(15) NOT NULL
+  `team_naam` varchar(15) NOT NULL,
+  `teamcode` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `teams`
+--
+
+INSERT INTO `teams` (`team_id`, `team_naam`, `teamcode`) VALUES
+(13, 'test', 'ffe5f1'),
+(14, 'herp', '111111');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `team_rule`
+-- Tabelstructuur voor tabel `team_rule`
 --
 
 CREATE TABLE `team_rule` (
@@ -102,10 +118,18 @@ CREATE TABLE `team_rule` (
   `resultaat_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `team_rule`
+--
+
+INSERT INTO `team_rule` (`team_rule_id`, `team_id`, `user_id`, `resultaat_id`) VALUES
+(4, 13, 7, 6),
+(5, 13, 10, 6);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tabelstructuur voor tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -113,47 +137,51 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `admin?` tinyint(1) NOT NULL
+  `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`user_id`, `email`, `username`, `password`, `admin?`) VALUES
-(2, 'test2@klk.nl', 'test', '$2y$10$U2ThseCOnqqZy7cotOnj8.ad529da/zZQxroQIBY1JZcbd/NUyMMW', 0);
+INSERT INTO `users` (`user_id`, `email`, `username`, `password`, `admin`) VALUES
+(2, 'test2@klk.nl', 'test555', '$2y$10$U2ThseCOnqqZy7cotOnj8.ad529da/zZQxroQIBY1JZcbd/NUyMMW', 0),
+(5, 'test2@klk.nlx', 'yo', '5076786', 0),
+(7, 'admin@admin.nl', 'admin', '$2y$10$lk/cmpLNVC19ODydQfy9/Ok.LTJwXABnohuyEy30JHoUb8P7297IG', 1),
+(9, 'test@test.com', 'test', '$2y$10$.kpZNCZSs4gSywNTX9BE4eiQWbpTwgBs3eEGxP9JrRxGgoVp.wCgW', 0),
+(10, 'lol@lol.lol', 'lol', '$2y$10$zBPTURT4OSUjsLObofPdDexNeWb.8M.JB7BZNHNE5jzWQsQXpoi2e', 0);
 
 --
--- Indexes for dumped tables
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `contact_formulier`
+-- Indexen voor tabel `contact_formulier`
 --
 ALTER TABLE `contact_formulier`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `questions`
+-- Indexen voor tabel `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `resultaten`
+-- Indexen voor tabel `resultaten`
 --
 ALTER TABLE `resultaten`
   ADD PRIMARY KEY (`resultaat_id`),
   ADD KEY `resultaat` (`resultaat`);
 
 --
--- Indexes for table `teams`
+-- Indexen voor tabel `teams`
 --
 ALTER TABLE `teams`
   ADD PRIMARY KEY (`team_id`);
 
 --
--- Indexes for table `team_rule`
+-- Indexen voor tabel `team_rule`
 --
 ALTER TABLE `team_rule`
   ADD PRIMARY KEY (`team_rule_id`),
@@ -162,7 +190,7 @@ ALTER TABLE `team_rule`
   ADD KEY `resultaat_id` (`resultaat_id`);
 
 --
--- Indexes for table `users`
+-- Indexen voor tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
@@ -170,45 +198,51 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `contact_formulier`
+-- AUTO_INCREMENT voor een tabel `contact_formulier`
 --
 ALTER TABLE `contact_formulier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `questions`
+-- AUTO_INCREMENT voor een tabel `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT for table `resultaten`
+-- AUTO_INCREMENT voor een tabel `resultaten`
 --
 ALTER TABLE `resultaten`
-  MODIFY `resultaat_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `resultaat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `teams`
+-- AUTO_INCREMENT voor een tabel `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `team_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `team_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT voor een tabel `team_rule`
+--
+ALTER TABLE `team_rule`
+  MODIFY `team_rule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- Constraints for dumped tables
+-- Beperkingen voor geëxporteerde tabellen
 --
 
 --
--- Constraints for table `team_rule`
+-- Beperkingen voor tabel `team_rule`
 --
 ALTER TABLE `team_rule`
   ADD CONSTRAINT `team_rule_ibfk_1` FOREIGN KEY (`team_id`) REFERENCES `teams` (`team_id`),

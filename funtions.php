@@ -334,10 +334,10 @@ function teamname_exists($team_naam) {
 }
 function register_team($post){
     try{ 
-        // Connect to database
+        session_start(); // Ensure session is started
         $conn = ConnectDb();
-        include 'config.php';
-        // Use a separate table for users, e.g., 'users'
+
+        // Insert the new team
         $query = $conn->prepare("
             INSERT INTO teams (team_naam, teamcode)
             VALUES (:team_naam, :teamcode)
@@ -346,6 +346,36 @@ function register_team($post){
             'team_naam' => $post['team_naam'],
             'teamcode' => $post['teamcode']
         ]);
+        $team_id = $conn->lastInsertId();
+
+        // Insert a new result for this team
+        $resultaat_query = $conn->prepare("
+            INSERT INTO resultaten (naam, tijd, resultaat)
+            VALUES (:naam, :tijd, :resultaat)
+        ");
+        // You can adjust these default values as needed
+        $resultaat_query->execute([
+            'naam' => $post['team_naam'],
+            'tijd' => '00:00:00',
+            'resultaat' => 'not started'
+        ]);
+        $resultaat_id = $conn->lastInsertId();
+
+        // Get the current user's ID from the session
+        if (isset($_SESSION['user_id'])) {
+            $user_id = $_SESSION['user_id'];
+
+            // Add the user to the team_rule table, linking to the new resultaat_id
+            $team_rule_query = $conn->prepare("
+                INSERT INTO team_rule (team_id, user_id, resultaat_id)
+                VALUES (:team_id, :user_id, :resultaat_id)
+            ");
+            $team_rule_query->execute([
+                'team_id' => $team_id,
+                'user_id' => $user_id,
+                'resultaat_id' => $resultaat_id
+            ]);
+        }
     }
     catch(PDOException $e){
         echo "error: " . $e->getMessage();
