@@ -311,3 +311,43 @@ function insertquetions($post){
     $retVal = ($stmt->rowCount() == 1) ? true : false ;
     return $retVal;  
 }
+
+function generate_teamcode($length = 6) {
+    $conn = connectDb();
+    do {
+        // Generate a random alphanumeric code
+        $code = bin2hex(random_bytes($length / 2)); // 8 chars = 4 bytes
+        // Check if the code already exists in the database
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM teams WHERE teamcode = :code");
+        $stmt->execute([':code' => $code]);
+        $exists = $stmt->fetchColumn() > 0;
+    } while ($exists);
+
+    // Now $code is unique, you can insert it or return it
+    return $code;
+}
+function teamname_exists($team_naam) {
+    $conn = connectDb();
+    $stmt = $conn->prepare("SELECT COUNT(*) FROM teams WHERE team_naam = :team_naam");
+    $stmt->execute([':team_naam' => $team_naam]);
+    return $stmt->fetchColumn() > 0;
+}
+function register_team($post){
+    try{ 
+        // Connect to database
+        $conn = ConnectDb();
+        include 'config.php';
+        // Use a separate table for users, e.g., 'users'
+        $query = $conn->prepare("
+            INSERT INTO teams (team_naam, teamcode)
+            VALUES (:team_naam, :teamcode)
+        ");
+        $query->execute([
+            'team_naam' => $post['team_naam'],
+            'teamcode' => $post['teamcode']
+        ]);
+    }
+    catch(PDOException $e){
+        echo "error: " . $e->getMessage();
+    }
+}
